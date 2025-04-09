@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo Buscador</title>
+</head>
+<body>
+    <input type="text" id = "tematica" placeholder="Buscar"> <br><br>
+    <button onclick = "buscar()">Buscar</button>
+    <div id = "resultado"></div>
+
+    <script>
+
+        let datos =[
+        "deportes|http:/www.marca.es",
+        "libros|http:/www.puntolibro.es",
+        "cocina|http:www.grancocina.org",
+        "juegos|http:www.game.es",
+        "deportes|http:www.todofutbol.es"
+        ]
+
+        
+
+    
+        function buscar(){
+
+            let direcciones=[];
+            let tematica = document.getElementById("tematica").value
+            tematica = tematica.toLowerCase();
+
+            for(let item of datos){
+                let trozos=item.split("|")
+                if (tematica == trozos[0]){
+                    direcciones.push(trozos[1])
+                }
+
+            } 
+            //volcar el contenido de el array de direcciones en el div
+            let html=""; 
+            for (d of direcciones){
+
+                
+                html = html+d+"<br>";
+
+            }
+             document.getElementById("resultado").innerHTML=html  
+        }
+
+    </script>
+</body>
+</html>

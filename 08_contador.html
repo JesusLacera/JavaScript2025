@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador en HTML</title>
+</head>
+<body>
+    <!--Crea un contador en una pagina web utilizando JavaScript y HTML5 2.0 = que el usuario ingrese un limite
+    y que al llegar a ese limite se invierta el contador-->
+
+    <input type="number" id = "limite" placeholder="Ingresa un limite"/>
+    <button onclick="iniciarContador()">Iniciar</button>
+    <div id ="contador">0</div>
+    <br>
+    <button id = "botonContador" onclick="contar()" disabled>Contar</button>
+    <br>
+    <script>
+        let contador = 0 
+        let limite = 0
+        let ascendiendo = true;
+
+
+        function iniciarContador(){
+            const input = document.getElementById("limite").value 
+            limite = parseInt(input);
+            if (!isNaN(limite) && limite > 0) {
+
+                contador = 0 ;
+                ascendiendo = true;
+                document.getElementById("contador").textContent = contador
+
+                document.getElementById("botonContador").disabled = false
+            } else {
+
+                alert("Por favor ingresa un limete valido mayor que 0")
+            }
+        }
+
+
+        function contar() {
+            if (ascendiendo == true) {
+
+                if (contador < limite){
+                    contador++;
+                 
+            }else{
+                ascendiendo = false;
+                contador--;
+                }
+            } else {
+                if (contador > 0) {
+                contador--;
+                
+            } else {
+                
+                document.getElementById("botonContador").disabled = true;
+                alert("Contador completado");
+
+                }
+            }
+
+            document.getElementById("contador").textContent = contador;
+         }
+
+
+    </script>
+    
+</body>
+</html>

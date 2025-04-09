@@ -18,18 +18,45 @@
         //array donde guardamos los nombres
         let nombres=[];
         function guardar(){
+            //impedir que se repitan los nombres
             let n=document.getElementById("nombre").value;
-            nombres.push(n);
-            alert("Contacto guardado: " + n 
-            
-            )
-        }
+            let repetido = false;
+            for ( let nombre of nombres){
+
+                if(nombres == n){
+                    repetido = true;
+                }
+            }
+                if (repetido == false){
+                nombres.push(n);
+                alert("Contacto guardado: " + n); 
+
+            } 
+                else{
+             alert("Valor no valido");    
+            }  
+        // limpiar la caja de texto 
+        document.getElementById("nombre").value = ""
+    }
+             
+        //for(let n of nombres){    
+        //html+= "<b>"+n+"</b><a onclick = 'borrar'();'><img src = 'papelera.png' height = 20 px width = 20 px</a><br>";
         function mostrar(){
             let html="";
-            for(let n of nombres){
-                html+= "<b>"+n+"</b><br>";
+            for (let i=0;i<nombres.length;i++){
+            
+                html=html + `<b>${nombres[i]}</b><a  href = '' onclick = 'borrar${i};'>'<img src = 'papelera.png' height = 20 px width = 20 px</a><br>`;
+  
               }
             document.getElementById("listaNombres").innerHTML=html;
+        }
+
+        //borra el nombre que esta en la posicion i
+
+        function borrar(i){  i = 1 
+             
+            nombres.splice(i,1);  
+
         }
         
     </script>
