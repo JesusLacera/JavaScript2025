@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="cargarCiudades();">
+    <select id ="ciudades">
+       <!-- <option value="10">Caceres</option>
+        <option value="25">Madrid</option>
+        <option value="50">Valencia</option>
+        <option value="45">Segovia</option>-->
+    </select>
+
+    <button onclick = "ver();">ver seleccionado</button>
+
+    <script>
+        let ciudades =["Caceres","Avila","Cordoba","Zaragosa","Avila","Cordoba","Zaragosa","Madrid"]
+        function ver(){
+            let valor = document.getElementById("ciudades").value;
+            console.log(valor);
+        }
+
+
+        //Se encarga de generar dinamicamente el contenido de el select apartir de el array ciudades
+        //pero eliminando duplicados.
+        function cargarCiudades(){
+            //Hemos creado un conjunto apartir de un array para eliminar duplicados 
+            let conjunto=new Set(ciudades)
+            let html ="";
+            for (let c of conjunto){
+                html = html+`<option>${c}</option>`;
+                
+            }
+            document.getElementById("ciudades").innerHTML=html;
+        }
+    </script>
+</body>
+</html>

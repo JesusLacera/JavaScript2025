@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo Buscador</title>
+</head>
+<body onload = "cargarTematica();">
+    Tematica:
+    <select id = "tematica" onchange="cargarDatos();">
+        
+
+
+    </select>
+
+    <br>
+
+    <table id ="resultados">
+
+
+
+    </table>
+    
+
+    <script>
+
+        let datos =[{tematica:"deportes",direccion:"http:/www.marca.es"},
+                    {tematica:"libros",direccion:"http:/www.puntolibro.es"},
+                    {tematica:"cocina",direccion:"http:www.grancocina.org"},
+                    {tematica:"juegos",direccion:"http:www.game.es"},
+                    {tematica:"deportes",direccion:"http:www.todofutbol.es"},
+                    {tematica:"libros",direccion:"http:www.librosHistoricos.es"},
+                    {tematica:"deportes",direccion:"http:www.deportesAhora.es"},
+                    {tematica:"juegos",direccion:"http:www.justGaming.org"},
+                    {tematica:"cocina",direccion:"http:www.tuRecetaEspecial.es"},
+             ]
+
+        
+        function cargarTematica() {
+            //Crea un array solo de temaricas para poder crear un conjunto y eliminar las tematicas repetidas
+
+            let tematicas=[];
+            tematicas.push("Todos")
+            for (let d of datos){
+                tematicas.push(d.tematica);
+            }
+            //Creamos un conjunto a partir de el array de tematicas y haci eliminamos los duplicados
+            html=""
+            let conjunto = new Set(tematicas) 
+            for (c of conjunto){
+                html = html+`<option>${c}</option>`
+            }
+            document.getElementById("tematica").innerHTML=html
+            
+        }
+            //debe generar tantos options como json del array que coincidan con la tematica selecciionada
+            function cargarDatos(){
+                let tematicaSeleccionada=document.getElementById("tematica").value
+                let html="<tr><th>Tematica</th><th>Direccion</th></tr>"
+                for (let d of datos){
+                    //Si el elemento coincide con la tematica seleccionada o se ha seleccionado
+                    //la palabra "Todos" en ambos casos debe construir la fila 
+                    if(d.tematica == tematicaSeleccionada || tematicaSeleccionada == "Todos"){
+                    html=html+`<tr><td>${d.tematica}</td><td>${d.direccion}</td></tr>`;
+                }
+                
+            }
+            document.getElementById("resultados").innerHTML=html
+         }
+
+        
+        
+
+    </script>
+</body>
+</html>

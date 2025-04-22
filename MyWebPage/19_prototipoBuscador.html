@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="cargarCiudades();">
+    <select id ="ciudades">
+       <!-- <option value="10">Caceres</option>
+        <option value="25">Madrid</option>
+        <option value="50">Valencia</option>
+        <option value="45">Segovia</option>-->
+    </select>
+
+    <div id="poblacion">
+        
+    </div>
+
+    <button onclick = "ver();">ver seleccionado</button>
+
+    <script>
+        let ciudades =[{ciudad:"Caceres",poblacion:120000},
+                        {ciudad:"Avila",poblacion:570000},
+                        {ciudad:"Cordoba",poblacion:720000},
+                        {ciudad:"Zaragosa",poblacion:6800000},
+                        {ciudad:"Madrid",poblacion:3270000}];
+        function ver(){
+            let valor = document.getElementById("ciudades").value;
+            
+        }
+
+
+        //Se encarga de generar dinamicamente el contenido de el select apartir de el array ciudades
+        //pero eliminando duplicados.
+        function cargarCiudades(){
+            
+            
+            let html ="";
+            for (let c of ciudades){
+               html = html+`<option value= "${c.poblacion}">${c.ciudad}</option>`
+                
+            }
+            document.getElementById("ciudades").innerHTML=html;
+            
+        }
+    </script>
+</body>
+</html>
