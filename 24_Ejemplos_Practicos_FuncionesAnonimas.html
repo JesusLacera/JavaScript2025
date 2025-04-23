@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        let notas=[8.9,6.7,4.0,2.6,5.5,4.7,10.0]
+
+        //motrar los aprobados 
+        //con notas.filter seleccionamos solo los numeros menor o iguales a 5.0
+        //y con forEach imprimimos cada uno de los numeros seleccionasdos dentro de este rango de superior a 5.0
+        //Se declara el valor n o una variable interna que solo es utilizada dentro de la funcion 
+
+        notas.filter((n)=>n>=5.0)
+        .forEach((n)=>console.log(n));
+
+        //mismo ejemplo para notas mayor que 8.0 pero estructurado en una misma linea
+        //  (*Se puede eliminar el "()" si solo se declara una sola variable)
+
+        notas.filter((n)=>n>=8.0).forEach((n)=>console.log(n));
+
+
+        //mostrar la suma de todo los numeros dentro de el array 
+        //Utilizamos el metodo reduce para realizar la suma de cada uno de los contenidos de el array 
+        //Utilizamos aux como variable auxiliar (puede tener cualquier nombre) y con el metodo arrow se suma el valor 
+        // en cada una de las variables auxiliares 
+
+       let suma = notas.reduce((aux,n)=>aux+n)
+
+        //mostrar la media de todas las sumas 
+        let media=suma/notas.length;
+        console.log(`Nota media ${media}`);
+
+        
+        //reducir uno a cada elemento de el array y guardarlo en las notas 
+        //con el metodo map recorremos todo el array de notas y reducimos el valor en 1 
+        //En este caso seria factible utilizar un forEach tambien 
+
+         notas=notas.map(n=>n-1);
+         console.log(notas)
+
+    </script>   
+</body>
+</html>

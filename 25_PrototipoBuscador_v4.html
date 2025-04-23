@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo Buscador</title>
+</head>
+<body onload = "cargarTematica();">
+    Tematica:
+    <select id = "tematica"> <!--onchange="cargarDatos();"-->
+        
+
+
+    </select>
+
+    <br>
+
+    <table id ="resultados">
+
+
+
+    </table>
+    
+
+    <script>
+        //Vamos a mejorar el codigo utilizando programacion funcional 
+        //Aplicar .filter .map etc donde sea utilizable Notas v4
+
+        let datos =[{tematica:"deportes",direccion:"http:/www.marca.es"},
+                    {tematica:"libros",direccion:"http:/www.puntolibro.es"},
+                    {tematica:"cocina",direccion:"http:www.grancocina.org"},
+                    {tematica:"juegos",direccion:"http:www.game.es"},
+                    {tematica:"deportes",direccion:"http:www.todofutbol.es"},
+                    {tematica:"libros",direccion:"http:www.librosHistoricos.es"},
+                    {tematica:"deportes",direccion:"http:www.deportesAhora.es"},
+                    {tematica:"juegos",direccion:"http:www.justGaming.org"},
+                    {tematica:"cocina",direccion:"http:www.tuRecetaEspecial.es"},
+             ]
+
+        //Permite que la pagina cargue las tematicas pusheando ademas la opcion Todos 
+        document.addEventListener("DOMContentLoaded",
+        () => {
+            let tematicas=datos.map(d=>d.tematica);
+            let conjunto = new Set(tematicas) ;
+            let html="<option>Todos</option>";
+            conjunto.forEach(c=> html=html+`<option>${c}</option>`);
+            document.getElementById("tematica").innerHTML=html
+            
+        })
+        //Funcion para cargar los datos segun la opcion seleccionada
+        document.getElementById("tematica").addEventListener("change",
+            function(){
+                let tematicaSeleccionada=document.getElementById("tematica").value
+                let html="<tr><th>Tematica</th><th>Direccion</th></tr>"
+                //Tradicional
+               /* for (let d of datos){
+                    if(d.tematica == tematicaSeleccionada || tematicaSeleccionada == "Todos"){
+                    html=html+`<tr><td>${d.tematica}</td><td>${d.direccion}</td></tr>`;
+                }   */
+               //Programacion "Funcional"
+                datos.filter(d=>d.tematica==tematicaSeleccionada||tematicaSeleccionada=="Todos")
+                .forEach(d=>html=html+`<tr><td>${d.tematica}</td><td>${d.direccion}</td></tr>`)
+            document.getElementById("resultados").innerHTML=html
+         
+        })
+        
+        
+
+    </script>
+</body>
+</html>
